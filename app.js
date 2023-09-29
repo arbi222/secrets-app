@@ -180,6 +180,10 @@ app.post("/login" , function(req , res){
 
 });
 
+app.get("*", function(req,res){
+  res.redirect("/");
+})
+
 
 app.listen(process.env.PORT || 3000 , function(){
   console.log("Server is running successfully !");
