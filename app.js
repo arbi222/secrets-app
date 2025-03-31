@@ -101,16 +101,21 @@ app.get("/register" , function(req , res){
 })
 
 app.get("/secrets", function(req , res){
-      User.find({"secret": {$ne: null}}, function(err , foundUsers){
-        if (err){
-          console.log(err);
-        }
-        else{
-          if(foundUsers){
-              res.render("secrets" , {usersWithSecrets: foundUsers});
+      if (req.isAuthenticated()){
+        User.find({"secret": {$ne: null}}, function(err , foundUsers){
+          if (err){
+            console.log(err);
           }
-        }
-      }); // not equal $ne
+          else{
+            if(foundUsers){
+                res.render("secrets" , {usersWithSecrets: foundUsers});
+            }
+          }
+        });
+      }
+      else{
+        res.redirect("/login");
+      }
 });
 
 app.post("/submit" , function(req, res){
