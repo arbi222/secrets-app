@@ -191,17 +191,17 @@ app.get("*", function(req,res){
   res.redirect("/");
 })
 
-const backendUrl = "https://secrets-g6b2.onrender.com";
-const job = new cron.CronJob('*/10 * * * *', function(){
-  https.get(backendUrl, (res) => {
-    if (res.statusCode === 200){
-      console.log("server restarted")
-    }
-  }).on("error", (err) => {
-      console.log("error");
-  })
-})
-job.start();
+// const backendUrl = "https://secrets-g6b2.onrender.com";
+// const job = new cron.CronJob('*/10 * * * *', function(){
+//   https.get(backendUrl, (res) => {
+//     if (res.statusCode === 200){
+//       console.log("server restarted")
+//     }
+//   }).on("error", (err) => {
+//       console.log("error");
+//   })
+// })
+// job.start();
 
 app.listen(process.env.PORT || 3000 , function(){
   console.log("Server is running successfully !");
